@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hilal Yılmaz | Hobilerim</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="hobilerim.html">Hobilerim</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+
+    <h1>Hobilerim</h1>
+    <ul>
+      <li>Harita incelemek ve CBS çalışmaları yapmak</li>
+      <li>Şehir içi keşif yürüyüşleri</li>
+      <li>Fotoğraf çekmek</li>
+    </ul>
+
+    <h2>Ankara Konum Haritası</h2>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      // Ankara (Kızılay civarı)
+      const lat = 39.92077;
+      const lng = 32.85411;
+
+      const map = L.map("map").setView([lat, lng], 12);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap'
+      }).addTo(map);
+
+      L.marker([lat, lng]).addTo(map)
+        .bindPopup("<b>Hilal Yılmaz</b><br>Ankara")
+        .openPopup();
+    </script>
+  </div>
+</body>
+</html>
