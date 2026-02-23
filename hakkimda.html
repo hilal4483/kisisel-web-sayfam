@@ -4,29 +4,71 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hilal Yılmaz | Hakkımda</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="stil.css" />
 </head>
 <body>
   <div class="container">
-    <nav class="nav">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="hakkimda.html">Hakkımda</a>
-      <a href="hobilerim.html">Hobilerim</a>
-      <a href="iletisim.html">İletişim</a>
-    </nav>
+    <header class="header">
+      <div class="brand">
+        <img src="profil.jpg" alt="Hilal Yılmaz" />
+        <div class="title">
+          <b>Hilal Yılmaz</b>
+          <span>Ankara • CBS</span>
+        </div>
+      </div>
 
-    <h1>Hakkımda</h1>
+      <nav class="nav">
+        <a href="index.html">Ana Sayfa</a>
+        <a class="active" href="hakkimda.html">Hakkımda</a>
+        <a href="hobilerim.html">Hobilerim</a>
+        <a href="iletisim.html">İletişim</a>
+      </nav>
+    </header>
 
-    <p><b>Ad Soyad:</b> Hilal Yılmaz</p>
-    <p><b>Şehir:</b> Ankara</p>
-    <p><b>Kurum/Alan:</b> Coğrafi Bilgi Sistemleri Genel Müdürlüğü</p>
+    <section class="hero fadeUp" style="margin-top:18px;">
+      <div>
+        <h1>Hakkımda</h1>
+        <p>
+          Merhaba, ben <b>Hilal Yılmaz</b>. Ankara’da yaşıyorum ve
+          <b>Coğrafi Bilgi Sistemleri</b> ile ilgileniyorum.
+          Web tabanlı harita uygulamaları geliştirmek ve CBS verilerini web üzerinde
+          görselleştirmek hedeflerim arasında.
+        </p>
 
-    <h2>Hedeflerim</h2>
-    <ul>
-      <li>Web tabanlı harita uygulamaları geliştirmek</li>
-      <li>CBS verilerini web üzerinde görselleştirmek</li>
-      <li>Leaflet / OpenLayers ile projeler üretmek</li>
-    </ul>
+        <div class="badges">
+          <span class="badge">Coğrafi Bilgi Sistemleri</span>
+          <span class="badge">Web CBS</span>
+          <span class="badge">Leaflet</span>
+          <span class="badge">GeoJSON</span>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="hobilerim.html">🗺 Harita Çalışması</a>
+          <a class="btn" href="iletisim.html">✉️ İletişime Geç</a>
+        </div>
+      </div>
+
+      <div>
+        <img class="photo" src="profil.jpg" alt="Hilal Yılmaz Fotoğraf" />
+      </div>
+    </section>
+
+    <section class="grid fadeUp">
+      <div class="card">
+        <h3>🎓 Alan / Kurum</h3>
+        <p>Coğrafi Bilgi Sistemleri Genel Müdürlüğü ve CBS tabanlı uygulamalar.</p>
+      </div>
+
+      <div class="card">
+        <h3>🎯 Hedefler</h3>
+        <p>Web haritaları, CBS veri katmanları (GeoJSON) ve modern arayüz tasarımı.</p>
+      </div>
+
+      <div class="card">
+        <h3>🛠 Beceriler</h3>
+        <p>HTML, CSS, Leaflet, temel JavaScript ile harita uygulamaları.</p>
+      </div>
+    </section>
   </div>
 </body>
 </html>

@@ -4,26 +4,76 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hilal Yılmaz | İletişim</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="stil.css" />
 </head>
 <body>
   <div class="container">
-    <nav class="nav">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="hakkimda.html">Hakkımda</a>
-      <a href="hobilerim.html">Hobilerim</a>
-      <a href="iletisim.html">İletişim</a>
-    </nav>
+    <header class="header">
+      <div class="brand">
+        <img src="profil.jpg" alt="Hilal Yılmaz" />
+        <div class="title">
+          <b>Hilal Yılmaz</b>
+          <span>Ankara • CBS</span>
+        </div>
+      </div>
 
-    <h1>İletişim</h1>
+      <nav class="nav">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="hakkimda.html">Hakkımda</a>
+        <a href="hobilerim.html">Hobilerim</a>
+        <a class="active" href="iletisim.html">İletişim</a>
+      </nav>
+    </header>
 
-    <p><b>Ad Soyad:</b> Hilal Yılmaz</p>
-    <p><b>Şehir:</b> Ankara</p>
-    <p><b>Kurum:</b> Coğrafi Bilgi Sistemleri Genel Müdürlüğü</p>
-    <p><b>Telefon:</b> 2339</p>
-    <p><b>E-posta:</b> hilal.yilmaz@csb.gov.tr</p>
+    <section class="hero fadeUp" style="margin-top:18px;">
+      <div>
+        <h1>İletişim</h1>
+        <p>
+          Benimle aşağıdaki kanallardan iletişime geçebilirsin.
+          (Bu alanları istersen kendi gerçek bilgilerinizle değiştirebilirsin.)
+        </p>
 
-    <button class="btn" onclick="alert('Mesajınız alındı! (demo)')">Mesaj Gönder</button>
+        <div class="grid" style="margin-top:12px;">
+          <div class="card">
+            <h3>📍 Konum</h3>
+            <p>Ankara</p>
+          </div>
+          <div class="card">
+            <h3>🏢 Kurum</h3>
+            <p>Coğrafi Bilgi Sistemleri Genel Müdürlüğü</p>
+          </div>
+          <div class="card">
+            <h3>✉️ E-posta</h3>
+            <p>hilal.yilmaz@csb.gov.tr</p>
+          </div>
+          <div class="card">
+            <h3>📞 Telefon</h3>
+            <p>  (312) 410 10 00 / 2339</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="alert('Mesajınız alındı! (demo)')">📨 Mesaj Gönder</button>
+          <a class="btn" href="hobilerim.html">🗺 Haritaya Dön</a>
+        </div>
+      </div>
+
+      <div>
+        <img class="photo" src="profil.jpg" alt="İletişim Görsel" />
+      </div>
+    </section>
+
+    <section class="card fadeUp" style="margin-top:18px;">
+      <h3>📌 Not</h3>
+      <p>
+        İstersen buraya sosyal medya bağlantılarını da ekleyebilirsin (GitHub, LinkedIn gibi).
+        Link eklemek için örnek:
+        <br><br>
+        <b>GitHub:</b> github.com/kullaniciadi
+        <br>
+        <b>LinkedIn:</b> linkedin.com/in/kullaniciadi
+      </p>
+    </section>
   </div>
 </body>
 </html>
