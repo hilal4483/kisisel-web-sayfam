@@ -1,29 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Kişisel Sayfam</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kişisel Web Sayfam</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="hobilerim.html">Hobilerim</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
 
-    <div class="container">
-        <h1>Ahmet Yılmaz</h1>
+    <h1>Merhaba! Ben [Ad Soyad]</h1>
+    <p>Web CBS dersi için kişisel web sayfası ödevim.</p>
 
-        <p class="about">
-            Ben frontend geliştirme öğreniyorum.
-            HTML ve CSS ile web siteleri yapıyorum.
-        </p>
-
-        <h2>İlgi Alanlarım</h2>
-        <ul>
-            <li>Frontend Development</li>
-            <li>Backend Development</li>
-            <li>Web Güvenliği</li>
-        </ul>
-
-        <button>Bana Ulaş</button>
+    <div class="grid">
+      <div class="card">
+        <h3>Hakkımda</h3>
+        <p>Kısa biyografi, eğitim, hedefler…</p>
+      </div>
+      <div class="card">
+        <h3>Hobilerim</h3>
+        <p>Hobiler + harita (Leaflet).</p>
+      </div>
+      <div class="card">
+        <h3>İletişim</h3>
+        <p>Mail / sosyal medya / konum.</p>
+      </div>
     </div>
 
+    <a class="btn" href="hobilerim.html">Haritayı Gör</a>
+  </div>
 </body>
 </html>
