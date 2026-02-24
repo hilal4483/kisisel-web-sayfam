@@ -3,27 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hilal Yılmaz | Hobilerim</title>
-
-  <!-- CSS dosyanın adı: stil.css -->
+  <title>Hobilerim</title>
   <link rel="stylesheet" href="stil.css" />
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
-
 <body>
   <div class="container">
-
     <nav class="nav">
       <a href="index.html">Ana Sayfa</a>
       <a href="hakkimda.html">Hakkımda</a>
-     <a class="active" href="hobilerim.html">Hobilerim</a>
+      <a class="active" href="hobilerim.html">Hobilerim</a>
       <a href="iletisim.html">İletişim</a>
     </nav>
 
     <h1>Hobilerim</h1>
-
     <ul>
       <li>Fotoğraf çekmek</li>
       <li>Koşu</li>
@@ -32,16 +27,13 @@
     </ul>
 
     <h2>Gezdiğim / Sevdiğim Yerler (Harita)</h2>
-    <p>Şehir ikonlarına tıklayarak bilgi penceresini açabilirsin.</p>
+    <p>Şehir ikonlarına tıklayınca bilgi penceresi açılır.</p>
 
-    <!-- Harita alanı -->
     <div id="map"></div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
     <script>
-      // Harita başlangıç (Türkiye + Avrupa görünsün)
       const map = L.map("map").setView([45, 15], 4);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -49,8 +41,6 @@
         attribution: "&copy; OpenStreetMap katkıda bulunanlar"
       }).addTo(map);
 
-      // Fotoğraflı marker'lar (efekt CSS'teki .photo-marker ile geliyor)
-      // Fotoğraflar repo'da şu yolda olmalı: images/xxx.jpg
       const locations = [
         { name: "Ghent University (Belçika)", coords: [51.0470, 3.7280], img: "images/gent.jpg" },
         { name: "Ankara", coords: [39.92077, 32.85411], img: "images/ankara.jpg" },
@@ -63,7 +53,7 @@
 
       locations.forEach(loc => {
         const icon = L.divIcon({
-          className: "", // Leaflet default class'ı kapat
+          className: "",
           html: `<div class="photo-marker" style="background-image:url('${loc.img}')"></div>`,
           iconSize: [48, 48],
           iconAnchor: [24, 48],
@@ -72,17 +62,12 @@
 
         const m = L.marker(loc.coords, { icon })
           .addTo(map)
-          .bindPopup(`<b>${loc.name}</b><br>Gittiğim/Sevdiğim yer`);
-
+          .bindPopup(`<b>${loc.name}</b>`);
         markers.push(m);
       });
 
-      // Tüm işaretçileri kapsayacak şekilde zoom ayarla
-      const group = L.featureGroup(markers);
-      map.fitBounds(group.getBounds().pad(0.2));
+      map.fitBounds(L.featureGroup(markers).getBounds().pad(0.2));
     </script>
-
   </div>
 </body>
 </html>
-
