@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 
   <!-- Leaflet CSS -->
+
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -34,6 +35,15 @@
 
     <div id="map"></div>
 
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+
+
+
+    
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -68,6 +78,9 @@
   const group = L.featureGroup(markers);
   map.fitBounds(group.getBounds().pad(0.2));
 </script>
+
+
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 
 
