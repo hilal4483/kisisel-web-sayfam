@@ -6,7 +6,6 @@
   <title>Hobilerim</title>
   <link rel="stylesheet" href="stil.css" />
 
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
@@ -31,7 +30,6 @@
 
     <div id="map"></div>
 
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
       const map = L.map("map").setView([45, 15], 4);
@@ -42,11 +40,11 @@
       }).addTo(map);
 
       const locations = [
-        { name: "Ghent University (Belçika)", coords: [51.0470, 3.7280], img: "resimler/gent.jpg" },
-        { name: "Ankara", coords: [39.92077, 32.85411], img: "resimler/ankara.jpg" },
-        { name: "İstanbul", coords: [41.0082, 28.9784], img: "resimler/istanbul.jpg" },
-        { name: "Hakkari", coords: [37.5744, 43.7408], img: "resimler/hakkari.jpg" },
-        { name: "Trabzon", coords: [41.0015, 39.7178], img: "resimler/trabzon.jpg" }
+        { name: "Ghent University (Belçika)", coords: [51.0470, 3.7280], img: "images/gent.jpg" },
+        { name: "Ankara (Anıtkabir)", coords: [39.92506, 32.83694], img: "images/ankara.jpg" },
+        { name: "İstanbul", coords: [41.0082, 28.9784], img: "images/istanbul.jpg" },
+        { name: "Hakkari", coords: [37.5744, 43.7408], img: "images/hakkari.jpg" },
+        { name: "Trabzon", coords: [41.0015, 39.7178], img: "images/trabzon.jpg" }
       ];
 
       const markers = [];
@@ -63,6 +61,7 @@
         const m = L.marker(loc.coords, { icon })
           .addTo(map)
           .bindPopup(`<b>${loc.name}</b>`);
+
         markers.push(m);
       });
 
@@ -71,4 +70,3 @@
   </div>
 </body>
 </html>
-
