@@ -34,27 +34,39 @@
 
     <div id="map"></div>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <script>
-      
-// Ghent University - Belçika
-      const lat = 51.0470;
-      const lng = 3.7280;
-      const map = L.map("map").setView([lat, lng], 12);
+<script>
+  // Harita (başlangıç merkezi: Ghent)
+  const map = L.map("map").setView([51.0470, 3.7280], 5);
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap katkıda bulunanlar'
-      }).addTo(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap katkıda bulunanlar'
+  }).addTo(map);
 
-      L.marker([lat, lng]).addTo(map)
-        .bindPopup("Burası: [GİTTİĞİM YERLER]")
-        .openPopup();
-    </script>
-  </div>
-</body>
-</html>
+  // ✅ Gittiğim yerler (çoklu nokta)
+  const locations = [
+    { name: "Ghent University (Belçika)", coords: [51.0470, 3.7280] },
+    { name: "Ankara", coords: [39.92077, 32.85411] },
+    { name: "İstanbul", coords: [41.0082, 28.9784] },
+    { name: "Hakkari", coords: [37.5744, 43.7408] }
+  ];
+
+  const markers = [];
+
+  locations.forEach(loc => {
+    const m = L.marker(loc.coords)
+      .addTo(map)
+      .bindPopup(`<b>${loc.name}</b>`);
+    markers.push(m);
+  });
+
+  // ✅ Tüm noktaları gösterecek şekilde zoom ayarla
+  const group = L.featureGroup(markers);
+  map.fitBounds(group.getBounds().pad(0.2));
+</script>
+
 
 
