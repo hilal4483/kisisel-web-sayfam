@@ -24,8 +24,9 @@
     <h1>Hobilerim</h1>
     <ul>
       <li>Fotoğraf çekmek</li>
-      <li>Yürüyüş / koşu</li>
-      <li>Harita incelemek</li>
+      <li>Koşu</li>
+       <li>PİYANO </li>
+      <li>KARAKALEM</li>
     </ul>
 
     <h2>Gezdiğim / Sevdiğim Yer (Harita)</h2>
@@ -37,11 +38,10 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
-      // 📍 Buradaki koordinatları kendine göre düzenle:
-      // Örn: Ankara: 39.92077, 32.85411
-      const lat = 39.92077;
-      const lng = 32.85411;
-
+      
+// Ghent University - Belçika
+      const lat = 51.0470;
+      const lng = 3.7280;
       const map = L.map("map").setView([lat, lng], 12);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -50,9 +50,10 @@
       }).addTo(map);
 
       L.marker([lat, lng]).addTo(map)
-        .bindPopup("Burası: [Şehrim / Sevdiğim yer]")
+        .bindPopup("Burası: [GİTTİĞİM YERLER]")
         .openPopup();
     </script>
   </div>
 </body>
 </html>
+
