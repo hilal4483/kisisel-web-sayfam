@@ -3,77 +3,56 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hilal Yılmaz | Hobilerim</title>
-  <link rel="stylesheet" href="stil.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <title>Hobilerim</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 </head>
 <body>
   <div class="container">
+    <nav class="nav">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="hobilerim.html">Hobilerim</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
 
-    <header class="header">
-      <div class="brand">
-        <div class="avatar">HY</div>
-        <div>
-          <b>Hilal Yılmaz</b>
-          <span>Ankara • Coğrafi Bilgi Sistemleri</span>
-        </div>
-      </div>
+    <h1>Hobilerim</h1>
+    <ul>
+      <li>Fotoğraf çekmek</li>
+      <li>Yürüyüş / koşu</li>
+      <li>Harita incelemek</li>
+    </ul>
 
-      <nav class="nav">
-        <a href="index.html">Ana Sayfa</a>
-        <a href="hakkimda.html">Hakkımda</a>
-        <a class="active" href="hobilerim.html">Hobilerim</a>
-        <a href="iletisim.html">İletişim</a>
-      </nav>
-    </header>
+    <h2>Gezdiğim / Sevdiğim Yer (Harita)</h2>
+    <p>Haritada bir işaretleyici (marker) var. İstersen koordinatı kendi şehrine göre değiştir.</p>
 
-    <section class="card fadeUp">
-      <h1>Hobilerim</h1>
-      <p>Harita üzerinde Ankara’da sevdiğim/sık gittiğim bazı yerler gösterilmiştir.</p>
+    <div id="map"></div>
 
-      <div class="grid">
-        <div class="kart">
-          <h3>🧭 CBS</h3>
-          <p>Harita incelemek, veri katmanlarıyla çalışmak.</p>
-        </div>
-        <div class="kart">
-          <h3>🚶‍♀️ Yürüyüş</h3>
-          <p>Şehir içi keşif yürüyüşleri.</p>
-        </div>
-        <div class="kart">
-          <h3>📷 Fotoğraf</h3>
-          <p>Doğa ve şehir fotoğrafı çekmek.</p>
-        </div>
-      </div>
-
-      <h2>Leaflet Haritası (Çoklu Nokta)</h2>
-      <p>Her işaretçiye tıklayınca bilgi penceresi açılır.</p>
-
-      <div id="map"></div>
-    </section>
-
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <script>
-      const map = L.map("map").setView([39.92077, 32.85411], 12);
+      // 📍 Buradaki koordinatları kendine göre düzenle:
+      // Örn: Ankara: 39.92077, 32.85411
+      const lat = 39.92077;
+      const lng = 32.85411;
+
+      const map = L.map("map").setView([lat, lng], 12);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
-        attribution: '&copy; OpenStreetMap'
+        attribution: '&copy; OpenStreetMap katkıda bulunanlar'
       }).addTo(map);
 
-      const locations = [
-        { name: "Kızılay", coords: [39.92077, 32.85411], info: "Şehir merkezi" },
-        { name: "Anıtkabir", coords: [39.92506, 32.83694], info: "Tarihi alan" },
-        { name: "Eymir Gölü", coords: [39.80390, 32.85830], info: "Doğa yürüyüşü" }
-      ];
-
-      const markers = locations.map(l =>
-        L.marker(l.coords).addTo(map).bindPopup(`<b>${l.name}</b><br>${l.info}`)
-      );
-
-      map.fitBounds(L.featureGroup(markers).getBounds().pad(0.15));
+      L.marker([lat, lng]).addTo(map)
+        .bindPopup("Burası: [Şehrim / Sevdiğim yer]")
+        .openPopup();
     </script>
-
   </div>
 </body>
 </html>
