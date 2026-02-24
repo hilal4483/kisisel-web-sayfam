@@ -1,5 +1,6 @@
 /* Genel */
 * { box-sizing: border-box; }
+
 body{
   margin:0;
   font-family: Arial, sans-serif;
@@ -23,6 +24,7 @@ body{
   flex-wrap:wrap;
   margin-bottom:18px;
 }
+
 .nav a{
   text-decoration:none;
   padding:10px 12px;
@@ -30,11 +32,19 @@ body{
   background:#eef2ff;
   color:#1e3a8a;
   font-weight:600;
-  transition: transform .2s ease, background .2s ease;
+  transition: transform .2s ease, background .2s ease, filter .2s ease;
 }
+
+/* Hover */
 .nav a:hover{
   transform: translateY(-2px);
   background:#dbeafe;
+}
+
+/* Aktif sayfa linki (HTML’de ilgili linke class="active" ekleyebilirsin) */
+.nav a.active{
+  background:#1e40af;
+  color:#fff;
 }
 
 /* ✅ Animasyon: başlık “yumuşak giriş” */
@@ -42,6 +52,7 @@ body{
   from { opacity:0; transform: translateY(10px); }
   to   { opacity:1; transform: translateY(0); }
 }
+
 h1{
   margin:0 0 8px 0;
   animation: fadeUp .7s ease both;
@@ -53,6 +64,7 @@ h1{
   50%  { transform: scale(1.03); }
   100% { transform: scale(1); }
 }
+
 .btn{
   display:inline-block;
   margin-top:14px;
@@ -63,8 +75,12 @@ h1{
   border-radius:10px;
   cursor:pointer;
   animation: pulse 1.6s ease-in-out infinite;
+  text-decoration:none; /* a etiketi olursa alt çizgi olmasın */
 }
-.btn:hover{ filter: brightness(1.05); }
+
+.btn:hover{
+  filter: brightness(1.05);
+}
 
 /* Harita alanı */
 #map{
@@ -75,12 +91,19 @@ h1{
   margin-top:12px;
 }
 
+/* Leaflet ikon kabı (foto marker düzgün dursun) */
+.leaflet-div-icon{
+  background: transparent !important;
+  border: none !important;
+}
+
 /* Küçük kartlar */
 .grid{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap:12px;
 }
+
 .card{
   background:#f9fafb;
   border:1px solid #eee;
@@ -88,7 +111,8 @@ h1{
   padding:14px;
 }
 
-.profile-img {
+/* Profil Foto */
+.profile-img{
   width: 180px;
   height: 180px;
   object-fit: cover;
@@ -99,8 +123,7 @@ h1{
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-
-
+/* Fotoğraflı Marker */
 .photo-marker{
   width: 48px;
   height: 48px;
@@ -114,4 +137,21 @@ h1{
 
 .photo-marker:hover{
   transform: scale(1.15);
+}
+
+/* Mobil uyum */
+@media (max-width: 600px){
+  .container{
+    padding:16px;
+  }
+  .nav{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav a{
+    text-align:center;
+  }
+  #map{
+    height: 300px;
+  }
 }
