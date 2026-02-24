@@ -4,14 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hobilerim</title>
+
+  <!-- CSS dosyanın adı neyse onu yaz:
+       style.css kullanıyorsan style.css, stil.css kullanıyorsan stil.css -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- Leaflet CSS -->
-
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
   <div class="container">
@@ -26,72 +25,44 @@
     <ul>
       <li>Fotoğraf çekmek</li>
       <li>Koşu</li>
-       <li>PİYANO </li>
-      <li>KARAKALEM</li>
+      <li>Piyano</li>
+      <li>Karakalem</li>
     </ul>
 
-    <h2>Gezdiğim / Sevdiğim Yer (Harita)</h2>
-    <p>Gittiği Yerler Koleksiyonu.</p>
+    <h2>Gezdiğim / Sevdiğim Yerler (Harita)</h2>
+    <p>Gittiğim yerler koleksiyonu.</p>
 
-    <div id="map"></div>
+    <!-- Harita alanı -->
+    <div id="map" style="height:360px;"></div>
 
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      const map = L.map("map").setView([45, 15], 4);
 
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap"
+      }).addTo(map);
 
+      const locations = [
+        { name: "Ghent University (Belçika)", coords: [51.0470, 3.7280] },
+        { name: "Ankara", coords: [39.92077, 32.85411] },
+        { name: "İstanbul", coords: [41.0082, 28.9784] },
+        { name: "Hakkari", coords: [37.5744, 43.7408] },
+        { name: "Trabzon", coords: [41.0015, 39.7178] }
+      ];
 
+      const markers = locations.map(l =>
+        L.marker(l.coords).addTo(map).bindPopup(`<b>${l.name}</b>`)
+      );
 
-    
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      map.fitBounds(L.featureGroup(markers).getBounds().pad(0.2));
+    </script>
+  </div>
+</body>
+</html>
 
-<script>
-  const map = L.map("map").setView([45, 15], 4);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution: "&copy; OpenStreetMap"
-  }).addTo(map);
-
-  const cluster = L.markerClusterGroup();
-
-  const locations = [
-    { name: "Ghent University", coords: [51.0470, 3.7280], img: "images/gent.jpg" },
-    { name: "Ankara", coords: [39.92077, 32.85411], img: "images/ankara.jpg" },
-    { name: "İstanbul", coords: [41.0082, 28.9784], img: "images/istanbul.jpg" },
-    { name: "Hakkari", coords: [37.5744, 43.7408], img: "images/hakkari.jpg" },
-    { name: "Trabzon", coords: [41.0015, 39.7178], img: "images/trabzon.jpg" }
-  ];
-
-  const markers = [];
-
-  locations.forEach(loc => {
-
-    const icon = L.divIcon({
-      className: "",
-      html: `<div class="photo-marker"
-               style="background-image:url('${loc.img}')"></div>`,
-      iconSize: [48, 48],
-      iconAnchor: [24, 48],
-      popupAnchor: [0, -48]
-    });
-
-    const marker = L.marker(loc.coords, { icon })
-      .bindPopup(`<b>${loc.name}</b>`);
-
-    cluster.addLayer(marker);
-    markers.push(marker);
-  });
-
-  map.addLayer(cluster);
-
-  const group = L.featureGroup(markers);
-  map.fitBounds(group.getBounds().pad(0.2));
-</script>
-
-    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 
 
