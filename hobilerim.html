@@ -9,12 +9,13 @@
 </head>
 <body>
   <div class="container">
+
     <header class="header">
       <div class="brand">
-        <img src="profil.jpg" alt="Hilal Yılmaz" />
-        <div class="title">
+        <div class="avatar">HY</div>
+        <div>
           <b>Hilal Yılmaz</b>
-          <span>Ankara • CBS</span>
+          <span>Ankara • Coğrafi Bilgi Sistemleri</span>
         </div>
       </div>
 
@@ -26,21 +27,33 @@
       </nav>
     </header>
 
-    <section class="card fadeUp" style="margin-top:18px;">
+    <section class="card fadeUp">
       <h1>Hobilerim</h1>
-      <p>Harita üzerinde Ankara’dan birkaç örnek nokta ve bir GeoJSON (CBS) katmanı gösterilmektedir.</p>
-      <ul style="color: var(--muted); line-height:1.6; margin: 10px 0 0;">
-        <li>Harita incelemek ve CBS çalışmaları yapmak</li>
-        <li>Şehir içi keşif yürüyüşleri</li>
-        <li>Fotoğraf çekmek</li>
-      </ul>
-    </section>
+      <p>Harita üzerinde Ankara’da sevdiğim/sık gittiğim bazı yerler gösterilmiştir.</p>
 
-    <div id="map" class="fadeUp"></div>
+      <div class="grid">
+        <div class="kart">
+          <h3>🧭 CBS</h3>
+          <p>Harita incelemek, veri katmanlarıyla çalışmak.</p>
+        </div>
+        <div class="kart">
+          <h3>🚶‍♀️ Yürüyüş</h3>
+          <p>Şehir içi keşif yürüyüşleri.</p>
+        </div>
+        <div class="kart">
+          <h3>📷 Fotoğraf</h3>
+          <p>Doğa ve şehir fotoğrafı çekmek.</p>
+        </div>
+      </div>
+
+      <h2>Leaflet Haritası (Çoklu Nokta)</h2>
+      <p>Her işaretçiye tıklayınca bilgi penceresi açılır.</p>
+
+      <div id="map"></div>
+    </section>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-      // Harita merkezi (Ankara)
       const map = L.map("map").setView([39.92077, 32.85411], 12);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -48,61 +61,19 @@
         attribution: '&copy; OpenStreetMap'
       }).addTo(map);
 
-      // ✅ Birden fazla nokta (Marker)
-      const points = [
+      const locations = [
         { name: "Kızılay", coords: [39.92077, 32.85411], info: "Şehir merkezi" },
-        { name: "Anıtkabir", coords: [39.92506, 32.83694], info: "Tarihi yer" },
-        { name: "Eymir Gölü", coords: [39.8039, 32.8583], info: "Doğa yürüyüşü" },
+        { name: "Anıtkabir", coords: [39.92506, 32.83694], info: "Tarihi alan" },
+        { name: "Eymir Gölü", coords: [39.80390, 32.85830], info: "Doğa yürüyüşü" }
       ];
 
-      const markers = points.map(p =>
-        L.marker(p.coords).addTo(map).bindPopup(`<b>${p.name}</b><br>${p.info}`)
+      const markers = locations.map(l =>
+        L.marker(l.coords).addTo(map).bindPopup(`<b>${l.name}</b><br>${l.info}`)
       );
 
-      // Hepsini kapsayacak şekilde zoom ayarla
-      const group = L.featureGroup(markers);
-      map.fitBounds(group.getBounds().pad(0.15));
-
-      // ✅ CBS verisi örneği: GeoJSON katmanı
-      // (örnek olarak bir yürüyüş rotası ve bir alan poligonu)
-      const geojsonData = {
-        "type": "FeatureCollection",
-        "features": [
-          {
-            "type": "Feature",
-            "properties": { "name": "Örnek Rota (LineString)" },
-            "geometry": {
-              "type": "LineString",
-              "coordinates": [
-                [32.85411, 39.92077],
-                [32.84650, 39.92550],
-                [32.83694, 39.92506]
-              ]
-            }
-          },
-          {
-            "type": "Feature",
-            "properties": { "name": "Örnek Alan (Polygon)" },
-            "geometry": {
-              "type": "Polygon",
-              "coordinates": [[
-                [32.8575, 39.9168],
-                [32.8620, 39.9168],
-                [32.8620, 39.9200],
-                [32.8575, 39.9200],
-                [32.8575, 39.9168]
-              ]]
-            }
-          }
-        ]
-      };
-
-      const cbsLayer = L.geoJSON(geojsonData, {
-        onEachFeature: (feature, layer) => {
-          layer.bindPopup(`<b>CBS Katmanı</b><br>${feature.properties.name}`);
-        }
-      }).addTo(map);
+      map.fitBounds(L.featureGroup(markers).getBounds().pad(0.15));
     </script>
+
   </div>
 </body>
 </html>
