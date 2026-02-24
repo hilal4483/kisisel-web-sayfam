@@ -48,39 +48,51 @@ href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.c
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-  // Harita (başlangıç merkezi: Ghent)
-  const map = L.map("map").setView([51.0470, 3.7280], 5);
+  const map = L.map("map").setView([45, 15], 4);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
-    attribution: '&copy; OpenStreetMap katkıda bulunanlar'
+    attribution: "&copy; OpenStreetMap"
   }).addTo(map);
 
-  // ✅ Gittiğim yerler (çoklu nokta)
+  const cluster = L.markerClusterGroup();
+
   const locations = [
-    { name: "Ghent University (Belçika)", coords: [51.0470, 3.7280] },
-    { name: "Ankara", coords: [39.92077, 32.85411] },
-    { name: "İstanbul", coords: [41.0082, 28.9784] },
-    { name: "Hakkari", coords: [37.5744, 43.7408] },
-    { name: "Trabzon", coords: [41.0015, 39.7178] }
+    { name: "Ghent University", coords: [51.0470, 3.7280], img: "images/gent.jpg" },
+    { name: "Ankara", coords: [39.92077, 32.85411], img: "images/ankara.jpg" },
+    { name: "İstanbul", coords: [41.0082, 28.9784], img: "images/istanbul.jpg" },
+    { name: "Hakkari", coords: [37.5744, 43.7408], img: "images/hakkari.jpg" },
+    { name: "Trabzon", coords: [41.0015, 39.7178], img: "images/trabzon.jpg" }
   ];
 
   const markers = [];
 
   locations.forEach(loc => {
-    const m = L.marker(loc.coords)
-      .addTo(map)
+
+    const icon = L.divIcon({
+      className: "",
+      html: `<div class="photo-marker"
+               style="background-image:url('${loc.img}')"></div>`,
+      iconSize: [48, 48],
+      iconAnchor: [24, 48],
+      popupAnchor: [0, -48]
+    });
+
+    const marker = L.marker(loc.coords, { icon })
       .bindPopup(`<b>${loc.name}</b>`);
-    markers.push(m);
+
+    cluster.addLayer(marker);
+    markers.push(marker);
   });
 
-  // ✅ Tüm noktaları gösterecek şekilde zoom ayarla
+  map.addLayer(cluster);
+
   const group = L.featureGroup(markers);
   map.fitBounds(group.getBounds().pad(0.2));
 </script>
 
-
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
 
 
 
